@@ -18,8 +18,8 @@ pipeline {
         stage ('Docker build') {
             steps {
                 script {
-                    sh 'docker build -t user-registration-app/latest .'
-                    sh 'docker run -p 80:80 user-registration-app/latest'
+                    sh 'docker build -t user-registration-app:latest .'
+                    sh 'docker run -p 80:80 --name web-app-server user-registration-app:latest'
                 }
 
             }
