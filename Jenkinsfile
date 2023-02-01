@@ -15,14 +15,13 @@ pipeline {
                 sh 'gradle build --scan -s'
             }
         }
-        stage ('Docker image build') {
+        stage ('Docker build') {
             steps {
-                sh 'docker build -t dhodowany/user-registration-app .'
-            }
-        }
-        stage ('Docker container run') {
-            steps {
-                sh 'docker run -p 80:80 dhodowany/user-registration-app'
+                script {
+                    sh 'docker build -t user-registration-app/latest .'
+                    sh 'docker run -p 80:80 user-registration-app/latest'
+                }
+
             }
         }
     }
