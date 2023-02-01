@@ -1,4 +1,5 @@
 FROM openjdk:17
 EXPOSE 8080
-COPY ./target/user-registration-web-app.jar /user-registration-app.jar
+ARG JAR_FILE=build/libs/user-registration-web-app.jar
+COPY target/${JAR_FILE} user-registration-app.jar
 ENTRYPOINT ["java", "-jar", "user-registration-app.jar"]
